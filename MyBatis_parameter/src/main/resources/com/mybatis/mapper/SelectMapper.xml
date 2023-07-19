@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.SelectMapper">
+
+<!--    根据id查询用户信息-->
+    <select id="getUserById" resultType="com.mybatis.pojo.user">
+        select * from user where id = #{id}
+    </select>
+
+
+    <!--查询所有的用户信息-->
+    <select id="getAllUser" resultType="com.mybatis.pojo.user">
+        select * from user
+    </select>
+
+    <!--
+    查询用户信息的总记录数
+    -->
+    <!--resultType mybatis所设置的类型别名-->
+    <select id="getCount" resultType="_int">
+        select count(*) from user
+    </select>
+
+    <!--
+    根据id查询用户信息为一个map集合
+    -->
+    <select id="getUserByIdToMap" resultType="map">
+        select * from user where id = #{id}
+    </select>
+
+    <!--查询所有用户信息为map集合-->
+    <select id="getAllUserToMap" resultType="map">
+        select * from user
+    </select>
+
+</mapper>
