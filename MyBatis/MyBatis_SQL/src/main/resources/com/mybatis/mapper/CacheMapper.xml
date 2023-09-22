@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.CacheMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache" ></cache>
+
+
+    <!--
+    缓存只对查询功能有效
+
+    一级缓存默认开启，同一个sqlseesion，
+    不同的SqlSession对应不同的一级缓存
+    同一个SqlSession但是查询条件不同
+    同一个SqlSession两次查询期间执行了任何一次增删改操作
+    同一个SqlSession两次查询期间手动清空了缓存
+    -->
+
+    <select id="getEmpByEid" resultType="com.mybatis.pojo.Emp">
+        select * from table_emp where eid =#{eid}
+    </select>
+
+    <insert id="insertEmp">
+        insert into table_emp values(null,#{empName},#{age},#{sex},null,null)
+    </insert>
+
+
+</mapper>
