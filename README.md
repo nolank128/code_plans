@@ -34,7 +34,9 @@
 后端：
     java+spring+springmvc+mybatis+mybatis-plus+springboot+mysql
 
+智慧校园云端管理系统的设计和实现
 
-智慧校园管理系统
+![image](https://github.com/Nolan-Kuang/plans/assets/99458644/7f89a54b-0bea-4b25-a260-f1876c725475)
+
 
 
