@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--MyBatis核心配置文件中，标签的顺序：
+        properties?,settings?,typeAliases?,typeHandlers?,
+        objectFactory?,objectWrapperFactory?,reflectorFactory?,
+        plugins?,environments?,databaseIdProvider?,mappers?
+        -->
+
+    <!--引入properties-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--
+    typeAliases标签 必须写在properties 标签后面
+    typeAlias 设置某个类型的别名
+        type：设置需要别名的类的类型
+        alias：设置某个类型的别名
+        若不写alias，则默认为其类名，且不区分大小写
+    package 
+        以包为单位，将包下所有的类型设置默认的类型别名，即类名不区分大小写
+        
+    -->
+    <typeAliases>
+        <typeAlias type="pojo.User" alias="User"></typeAlias>
+        
+        <package name="pojo"/>
+    </typeAliases>
+
+
+    <!--配置连接数据库环境
+
+    environments：配置多个连接数据库的环境
+    属性：
+        default：设置默认使用的环境id
+
+    -->
+    <environments default="development">
+        <!--
+        enviroment:配置某个具体环境
+        属性：
+        id：表示连接数据库的环境的唯一标识，不能重复。
+        -->
+        <environment id="development">
+            <!--
+            transactionManger:设置事务管理方式
+                属性：
+                    type：“JDBC、MANAGED”
+                    JDBC：表示当前环境中，执行SQL时，使用jdbc中原生的事务管理方式，事务的提交和回滚需要手动处理
+                    MANAGED：被管理   使用spring等
+            -->
+            <transactionManager type="JDBC"/>
+            <!--
+            dataSource：配置数据源
+            属性：
+                   type：设置数据源的类型
+                   type：“POOLED 、UNPOOLED、JNDI”
+                   POOLED：表示使用数据库连接池缓存数据库连接
+                   UNPOOLED：  表示不使用数据库连接池
+                   JNDI：表示使用上下文的数据源
+            -->
+            <dataSource type="POOLED">
+                <!--设置连接数据库的参数-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    
+    
+    <!--引入映射文件-->
+    <mappers>
+        <mapper resource="mappers/UserMapper.xml"/>
+        <!--
+        以包为单位引入映射文件
+
+        mapper 接口所在的包要和映射文件所在的包一致
+        mapper 接口要和映射文件的名字一致
+        -->
+        <!--<package name="xxx.xxx.xxx.mapper"/>-->
+    </mappers>
+</configuration>
