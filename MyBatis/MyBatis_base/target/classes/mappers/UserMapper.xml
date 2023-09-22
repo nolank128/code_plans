@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+
+
+    <insert id="insertUser">
+        insert into user values(null,'test','test','男',22,null)
+
+    </insert>
+
+    <update id="updateUser">
+        update user set username="alice" where age=22
+    </update>
+
+    <delete id="deleteUser">
+
+        delete  from user where age=21
+    </delete>
+
+
+    <!--
+    查询功能的标签必须设置resultType 或者resultMap
+    resultType：设置默认的映射关系
+    resultMap： 设置自定义的映射关系。（当字段名与属性名不一致，或者多对一等关系时设置自定义的映射关系）
+    -->
+    <select id="getUserById" resultType="pojo.User">
+        select * from user where id=1
+    </select>
+
+    <select id="getAllUser" resultType="pojo.User">
+        select * from user
+    </select>
+
+</mapper>
