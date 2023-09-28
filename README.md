@@ -16,10 +16,6 @@
 
 
 
-![code](https://github.com/Nolan-Kuang/code_plans/assets/99458644/2cedf5a9-66d7-4775-9f07-8bba3566f6a8)
-
-
-
 
 
 智慧校园云端管理系统的设计和实现
